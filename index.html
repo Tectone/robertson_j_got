@@ -13,7 +13,7 @@
 <!-- make gitignore file and ignore .DS_Store .mp4 .ogg .webm and node_modules-->
 
 <section class="wrapper">
-	<video controls muted poster="images/vid1_large.png">
+	<video muted poster="images/vid1_large.png">
 		<!-- need multiple sources to work cross browser -->
 		<!-- for older iOS devices, MP4 has to be the first source -->
 		<source src="video/mini_1.mp4" type="video/mp4">
@@ -21,7 +21,12 @@
 		<source src="video/mini_1.webm" type="video/webm">
 		Your browser doesn't support video. Use one that doesn't suck!
 	</video>
+
+	<button>pause</button>
+	<button>play</button>
+	<button>rewind</button>
 </section>
+
 	<script src="js/main.js"></script>
 </body>
 </html>

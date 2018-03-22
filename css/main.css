@@ -13,6 +13,7 @@ body
 video
 {
 	width: 100%;
+	margin-bottom: 12px;
 }
 
 .wrapper
@@ -25,4 +26,13 @@ video
 .hidden
 {
 	display: none;
+}
+
+button
+{
+	padding: 5px 8px; 
+	font-size: 1.5em; 
+	border-radius: 8px; 
+	cursor: pointer;
+	margin-right: 12px;
 }

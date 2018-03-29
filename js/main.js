@@ -1,45 +1,64 @@
  //JavaScript Document
 (() => {
  console.log("Linked up");
- // variables come first!
- //grab the video
- const vidPlayer = document.querySelector('video'),
- 	pauseButton =document.querySelectorAll('button')[0],
- 	playButton =document.querySelectorAll('button')[1],
- 	rewindButton =document.querySelectorAll('button')[2];
 
- 	//function go in the middle!
- 	function volOn() {
- 		vidPlayer.muted = false;
- 	}
+ String.prototype.capIt = function() { return this.replace(this.charAt(), this.charAt().toUpperCase());}
 
- 	function volOff() {
- 		vidPlayer.muted = true;
- 	}
+ // variable stack goes here
+ let sigils = document.querySelectorAll('.sigilContainer'),
+ 	lightbox = document.querySelector('.lightbox'),
+ 	closeLightBoxButton = lightbox.querySelector('.close-lightbox'),
+ 	vidPlayer = document.querySelector('video'),
+ 	vidControls = document.querySelector('.controls'),
+ 	imageBanner = document.querySelector('#houseImages');
 
- 	function playVideo() {
- 		// make the video play!
+ 	// functions in the middle!
+ 	function showHouseVideo() {
+ 		let houseName = this.className.split(' ')[1].capIt();
+ 		// splite apart the class name on the element, grab the house from the result
+ 		document.querySelector('h1').textContent = `House ${houseName}`;
+ 		//debugger;
+ 		lightbox.classList.add('show-lightbox');
+ 		// make the video play
+ 		vidPlayer.src = `video/House-${houseName}.${vidPlayer.currentSrc.split('.')[1]}`;
+ 		vidPlayer.load();
  		vidPlayer.play();
+
+ 		scrollBanners(this.dataset.offset);
  	}
 
- 	function pauseVideo() {
- 		// make the video pause!
+ 	function scrollBanners(offset) {
+ 		// move the banner images to the left
+ 		let moveIt = offset * 600 + "px";
+
+ 		imageBanner.style.right = moveIt;
+ 	}
+
+ 	function closeLightbox() {
+ 		lightbox.classList.remove('show-lightbox');
+ 		// stop the video and rewind it to 0
  		vidPlayer.pause();
  	}
 
- 	function rewindVideo() {
- 		// make the video rewind!
- 		//vidPlayer.currentTime -= 3;
- 		vidPlayer.currentTime = 0;
+ 	function pausePlay() {
+ 		//debugger;
+ 		//
+ 		let theButton = this.firstElementChild;
+ 		if (vidPlayer.paused == true) {
+ 			//play the video
+ 			vidPlayer.play();
+ 			theButton.dataset.icon = "pause-circle";
+ 		} else {
+ 			vidPlayer.pause();
+ 			theButton.dataset.icon = "play-circle";
+ 		}
+ 	
  	}
 
- 	vidPlayer.addEventListener('mouseover', volOn);
- 	vidPlayer.addEventListener('mouseout', volOff);
-
- 	playButton.addEventListener('click', playVideo);
- 	pauseButton.addEventListener('click', pauseVideo);
- 	rewindButton.addEventListener('click', rewindVideo);
-
-
- })();
-
+ 	//event handling at the bottomNa
+ 	//
+ 	sigils.forEach(sigil => sigil.addEventListener('click', showHouseVideo));
+ 	closeLightBoxButton.addEventListener('click', closeLightbox);
+ 	vidPlayer.addEventListener('ended', closeLightbox)
+ 	vidControls.addEventListener('click', pausePlay);
+})();

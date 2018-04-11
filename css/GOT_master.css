@@ -46,7 +46,7 @@ main
 
 #houseImages 
 { 
-	position:relative; width:4800px; transition: all .5s; 
+	position:relative; width:5600px; transition: all .5s; 
 }
 #houseImages img 
 { 
@@ -105,6 +105,9 @@ main
 
 .tyrell { background-position:-355px -54px; }
 .tyrell:hover { background-position:-355px 0px; }
+
+.targaryen { background-position:-406px -54px; }
+.targaryen:hover { background-position:-406px 0px; }
 
 
 

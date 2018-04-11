@@ -15,7 +15,7 @@
  	// functions in the middle!
  	function showHouseVideo() {
  		let houseName = this.className.split(' ')[1].capIt();
- 		// splite apart the class name on the element, grab the house from the result
+ 		// split apart the class name on the element, grab the house from the result
  		document.querySelector('h1').textContent = `House ${houseName}`;
  		//debugger;
  		lightbox.classList.add('show-lightbox');
